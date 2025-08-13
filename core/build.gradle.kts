@@ -1,3 +1,5 @@
+import java.net.URI
+
 plugins {
     id("java-library")
     id("maven-publish")
@@ -50,5 +52,24 @@ publishing {
 
     repositories {
         mavenLocal()
+
+        maven {
+            name = "AtlasWorld-Repository"
+
+            val isSnapshot = System.getenv("RELEASE") != "true"
+            var release = URI.create("https://repository.atlasworld.fr/repository/maven-releases/")
+            var snapshot = URI.create("https://repository.atlasworld.fr/repository/maven-snapshots/")
+
+            url = if (isSnapshot) {release} else {snapshot}
+
+            credentials {
+                username = System.getenv("REPO_USERNAME")
+                password = System.getenv("REPO_PASSWORD")
+            }
+
+            metadataSources {
+                gradleMetadata()
+            }
+        }
     }
 }
