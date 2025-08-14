@@ -40,7 +40,7 @@ jobs:
           echo "Version: ${VERSION}" >> $GITHUB_STEP_SUMMARY
 
       - name: Publish Artifacts
-        run: ./gradlew publish --info --stacktrace
+        run: ./gradlew publish
         env:
           REPO_USERNAME: ${{ secrets.REPOSITORY_USER }}
           REPO_PASSWORD: ${{ secrets.REPOSITORY_PASSWORD }}
