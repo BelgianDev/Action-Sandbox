@@ -59,10 +59,11 @@ publishing {
 
         maven {
             name = "AtlasWorld-Repository"
+            isAllowInsecureProtocol = true
 
             val isSnapshot = System.getenv("RELEASE") != "true"
-            var release = URI.create("https://repository.atlasworld.fr/repository/maven-releases/")
-            var snapshot = URI.create("https://repository.atlasworld.fr/repository/maven-snapshots/")
+            var release = URI.create("http://ssh.atlasworld.fr:8003/repository/maven-releases/")
+            var snapshot = URI.create("http://ssh.atlasworld.fr:8003/repository/maven-snapshots/")
 
             url = if (isSnapshot) {release} else {snapshot}
 
