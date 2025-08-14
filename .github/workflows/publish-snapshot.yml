@@ -2,6 +2,9 @@ name: Publish - Snapshot
 on:
   push
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     strategy:
